@@ -20,12 +20,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Productos',
-      initialRoute: 'home',
+      initialRoute: 'product_detail',
       theme: CustomTheme.light,
       darkTheme: CustomTheme.dark,
       routes: {
         'home': (_) => const HomeScreen(),
         'login': (_) => const LoginScreen(),
+        'product_detail': (_) => const ProductScreen(),
       },
     );
   }
