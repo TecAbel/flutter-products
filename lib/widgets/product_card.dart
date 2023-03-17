@@ -24,30 +24,35 @@ class ProductCard extends StatelessWidget {
 
     return Padding(
       padding: const EdgeInsets.only(top: 20, right: 20, left: 20),
-      child: Container(
-        height: 400,
-        decoration: productCardDecoration(),
-        width: double.infinity,
-        child: Stack(
-          alignment: Alignment.bottomLeft,
-          children: [
-            _backgroudImage(borderRadius: borderRadius),
-            const _productDetails(),
-            Positioned(top: 0, right: 0, child: _PriceTag()),
-            Positioned(
-              top: 0,
-              left: 0,
-              child: _NotAvailable(),
-            )
-          ],
+      child: InkWell(
+        onTap: () {
+          Navigator.of(context).pushNamed('product_detail');
+        },
+        child: Container(
+          height: 400,
+          decoration: productCardDecoration(),
+          width: double.infinity,
+          child: Stack(
+            alignment: Alignment.bottomLeft,
+            children: [
+              _BackgroudImage(borderRadius: borderRadius),
+              const _ProductDetails(),
+              Positioned(top: 0, right: 0, child: _PriceTag()),
+              Positioned(
+                top: 0,
+                left: 0,
+                child: _NotAvailable(),
+              )
+            ],
+          ),
         ),
       ),
     );
   }
 }
 
-class _backgroudImage extends StatelessWidget {
-  const _backgroudImage({
+class _BackgroudImage extends StatelessWidget {
+  const _BackgroudImage({
     required this.borderRadius,
   });
 
@@ -70,8 +75,8 @@ class _backgroudImage extends StatelessWidget {
   }
 }
 
-class _productDetails extends StatelessWidget {
-  const _productDetails();
+class _ProductDetails extends StatelessWidget {
+  const _ProductDetails();
 
   @override
   Widget build(BuildContext context) {

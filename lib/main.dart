@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Productos',
-      initialRoute: 'product_detail',
+      initialRoute: 'home',
       theme: CustomTheme.light,
       darkTheme: CustomTheme.dark,
       routes: {
