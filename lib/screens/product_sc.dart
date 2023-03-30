@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:products_login/forms/product_form.dart';
+import 'package:products_login/models/product.dart';
+import 'package:products_login/providers/product_form_provider.dart';
+import 'package:provider/provider.dart';
 
 import '../widgets/index.dart';
 
@@ -8,6 +11,14 @@ class ProductScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final product = ModalRoute.of(context)!.settings.arguments as Product;
+    return ChangeNotifierProvider(
+      create: (BuildContext context) => ProductFormProvider(product),
+      child: _productScreenBody(product),
+    );
+  }
+
+  Scaffold _productScreenBody(Product product) {
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(10.0),
@@ -18,7 +29,12 @@ class ProductScreen extends StatelessWidget {
               width: double.infinity,
               height: 600,
               child: Column(
-                children: const [TopImageProductDetail(), ProductForm()],
+                children: [
+                  TopImageProductDetail(
+                    imageUrl: product.image,
+                  ),
+                  const ProductForm()
+                ],
               ),
             ),
           ),

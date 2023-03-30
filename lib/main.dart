@@ -2,12 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:products_login/config/index.dart';
 import 'package:products_login/providers/login_form_provider.dart';
 import 'package:products_login/screens/index.dart';
+import 'package:products_login/services/product_service.dart';
 import 'package:provider/provider.dart';
 
 void main() {
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(
       create: (_) => LoginFormProvider(),
+    ),
+    ChangeNotifierProvider(
+      create: (_) => ProductService(),
     )
   ], child: const MyApp()));
 }
