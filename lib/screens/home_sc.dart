@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:products_login/config/index.dart';
+import 'package:products_login/models/product.dart';
 import 'package:products_login/screens/index.dart';
 import 'package:products_login/widgets/index.dart';
 import 'package:provider/provider.dart';
@@ -35,7 +36,13 @@ class HomeScreen extends StatelessWidget {
             ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          print('hi');
+          Navigator.pushNamed(context, 'product_detail',
+              arguments: Product(
+                name: '',
+                available: true,
+                image: '',
+                price: 0,
+              ));
         },
         child: const Icon(Icons.add),
       ),

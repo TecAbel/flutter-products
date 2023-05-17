@@ -41,6 +41,7 @@ class ProductService extends ChangeNotifier {
 
     if (product.id == null) {
       // implement save
+      await createProduct(product);
     } else {
       // implement update
       await updateProduct(product);
@@ -56,12 +57,21 @@ class ProductService extends ChangeNotifier {
     if (resp.statusCode != 200) {
       return null;
     }
-    // products.removeWhere((x) => x.id == product.id);
-    // final Map<String, dynamic> prodMap = json.decode(resp.body);
-    // Product newProduct = Product.fromJson(prodMap);
-    // products.add(newProduct);
     final indexProd = products.indexWhere((x) => x.id == product.id);
     products[indexProd] = product;
+    return product.id;
+  }
+
+  Future<String?> createProduct(Product product) async {
+    final url = Uri.https(_baseUrl, 'products.json');
+    final resp = await http.post(url, body: product.toRawJson());
+    if (resp.statusCode != 200) {
+      return null;
+    }
+    final mapped = json.decode(resp.body);
+    product.id = mapped['name'];
+
+    products.add(product);
     return product.id;
   }
 }

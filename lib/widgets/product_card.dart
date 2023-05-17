@@ -79,7 +79,7 @@ class _BackgroudImage extends StatelessWidget {
       height: double.infinity,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(borderRadius),
-        child: imageUrl == null
+        child: imageUrl == null || imageUrl == ''
             ? const Image(
                 fit: BoxFit.cover,
                 image: AssetImage('assets/no-image.png'),
