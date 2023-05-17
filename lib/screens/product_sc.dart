@@ -14,11 +14,13 @@ class ProductScreen extends StatelessWidget {
     final product = ModalRoute.of(context)!.settings.arguments as Product;
     return ChangeNotifierProvider(
       create: (BuildContext context) => ProductFormProvider(product),
-      child: _productScreenBody(product),
+      // child: _productScreenBody(context, product),
+      builder: (context, child) => _productScreenBody(context, product),
     );
   }
 
-  Scaffold _productScreenBody(Product product) {
+  Scaffold _productScreenBody(BuildContext context, Product product) {
+    final productForm = Provider.of<ProductFormProvider>(context);
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(10.0),
@@ -34,7 +36,7 @@ class ProductScreen extends StatelessWidget {
                   TopImageProductDetail(
                     imageUrl: product.image,
                   ),
-                  const Opacity(opacity: 0.9, child: ProductForm())
+                  const ProductForm()
                 ],
               ),
             ),
@@ -43,7 +45,9 @@ class ProductScreen extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.save),
-        onPressed: () {},
+        onPressed: () {
+          productForm.validate();
+        },
       ),
     );
   }

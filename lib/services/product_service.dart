@@ -8,17 +8,22 @@ class ProductService extends ChangeNotifier {
   final String _baseUrl = 'users-service-10a0b-default-rtdb.firebaseio.com';
   List<Product> products = [];
   bool isLoading = false;
+  bool isSaving = false;
 
   ProductService() {
     getProducts();
   }
 
-  Future<List<Product>> getProducts() async {
+  Future<List<Product>?> getProducts() async {
     isLoading = true;
     notifyListeners();
     final url = Uri.https(_baseUrl, 'products.json');
     final resp = await http.get(url);
-    print('response => ${jsonEncode(resp.body)}');
+    if (resp.statusCode != 200) {
+      isLoading = false;
+      notifyListeners();
+      return null;
+    }
     final Map<String, dynamic> productsMap = json.decode(resp.body);
     productsMap.forEach((key, value) {
       final productTmp = Product.fromJson(value);
@@ -28,5 +33,13 @@ class ProductService extends ChangeNotifier {
     isLoading = false;
     notifyListeners();
     return products;
+  }
+
+  Future saveOrCreateProduct(Product product) async {
+    isSaving = true;
+    notifyListeners();
+
+    isSaving = false;
+    notifyListeners();
   }
 }

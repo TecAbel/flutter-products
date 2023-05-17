@@ -25,7 +25,7 @@ class TopImageProductDetail extends StatelessWidget {
                   ),
           ),
           Opacity(
-            opacity: 0.6,
+            opacity: 0.4,
             child: Container(
               decoration: BoxDecoration(
                 color: Colors.black38,
