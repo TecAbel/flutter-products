@@ -26,7 +26,7 @@ class ProductService extends ChangeNotifier {
     }
     final Map<String, dynamic> productsMap = json.decode(resp.body);
     productsMap.forEach((key, value) {
-      final productTmp = Product.fromJson(value);
+      Product productTmp = Product.fromJson(value);
       productTmp.id = key;
       products.add(productTmp);
     });
@@ -39,7 +39,29 @@ class ProductService extends ChangeNotifier {
     isSaving = true;
     notifyListeners();
 
+    if (product.id == null) {
+      // implement save
+    } else {
+      // implement update
+      await updateProduct(product);
+    }
+
     isSaving = false;
     notifyListeners();
+  }
+
+  Future<String?> updateProduct(Product product) async {
+    final url = Uri.https(_baseUrl, 'products/${product.id}.json');
+    final resp = await http.put(url, body: product.toRawJson());
+    if (resp.statusCode != 200) {
+      return null;
+    }
+    // products.removeWhere((x) => x.id == product.id);
+    // final Map<String, dynamic> prodMap = json.decode(resp.body);
+    // Product newProduct = Product.fromJson(prodMap);
+    // products.add(newProduct);
+    final indexProd = products.indexWhere((x) => x.id == product.id);
+    products[indexProd] = product;
+    return product.id;
   }
 }

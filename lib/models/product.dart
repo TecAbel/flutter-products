@@ -1,16 +1,16 @@
 // To parse this JSON data, do
 //
-//     final products = productsFromJson(jsonString);
+//     final product = productFromJson(jsonString);
 
 import 'dart:convert';
 
-Map<String, Product> productsFromJson(String str) => Map.from(json.decode(str))
-    .map((k, v) => MapEntry<String, Product>(k, Product.fromJson(v)));
-
-String productsToJson(Map<String, Product> data) => json.encode(
-    Map.from(data).map((k, v) => MapEntry<String, dynamic>(k, v.toJson())));
-
 class Product {
+  bool available;
+  String? image;
+  String name;
+  double price;
+  String? id;
+
   Product({
     required this.available,
     this.image,
@@ -18,11 +18,22 @@ class Product {
     required this.price,
   });
 
-  bool available;
-  String? image;
-  String name;
-  double price;
-  String? id;
+  Product copyWith({
+    bool? available,
+    String? image,
+    String? name,
+    double? price,
+  }) =>
+      Product(
+        available: available ?? this.available,
+        image: image ?? this.image,
+        name: name ?? this.name,
+        price: price ?? this.price,
+      );
+
+  factory Product.fromRawJson(String str) => Product.fromJson(json.decode(str));
+
+  String toRawJson() => json.encode(toJson());
 
   factory Product.fromJson(Map<String, dynamic> json) => Product(
         available: json["available"],

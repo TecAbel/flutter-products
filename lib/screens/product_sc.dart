@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:products_login/forms/product_form.dart';
 import 'package:products_login/models/product.dart';
 import 'package:products_login/providers/product_form_provider.dart';
+import 'package:products_login/services/index.dart';
 import 'package:provider/provider.dart';
 
 import '../widgets/index.dart';
@@ -21,6 +22,7 @@ class ProductScreen extends StatelessWidget {
 
   Scaffold _productScreenBody(BuildContext context, Product product) {
     final productForm = Provider.of<ProductFormProvider>(context);
+    final productService = Provider.of<ProductService>(context);
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(10.0),
@@ -46,7 +48,9 @@ class ProductScreen extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.save),
         onPressed: () {
-          productForm.validate();
+          final isValid = productForm.validate();
+          if (!isValid) return;
+          productService.saveOrCreateProduct(productForm.product);
         },
       ),
     );
