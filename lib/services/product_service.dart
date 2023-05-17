@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -9,6 +10,8 @@ class ProductService extends ChangeNotifier {
   List<Product> products = [];
   bool isLoading = false;
   bool isSaving = false;
+  Product? productSelected;
+  File? selectedImage;
 
   ProductService() {
     getProducts();
@@ -73,5 +76,11 @@ class ProductService extends ChangeNotifier {
 
     products.add(product);
     return product.id;
+  }
+
+  void updateProductImage(String path) {
+    productSelected?.image = path;
+    selectedImage = File.fromUri(Uri(path: path));
+    notifyListeners();
   }
 }

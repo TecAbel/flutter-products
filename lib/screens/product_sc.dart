@@ -46,7 +46,6 @@ class ProductScreen extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.save),
         onPressed: productService.isSaving
             ? null
             : () {
@@ -54,6 +53,7 @@ class ProductScreen extends StatelessWidget {
                 if (!isValid) return;
                 productService.saveOrCreateProduct(productForm.product);
               },
+        child: const Icon(Icons.save),
       ),
     );
   }

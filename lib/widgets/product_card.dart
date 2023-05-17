@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:products_login/config/index.dart';
 import 'package:products_login/models/product.dart';
+import 'package:products_login/services/index.dart';
+import 'package:provider/provider.dart';
 
 class ProductCard extends StatelessWidget {
   final Product product;
@@ -9,6 +11,7 @@ class ProductCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double borderRadius = 25;
+    final productService = Provider.of<ProductService>(context);
 
     BoxDecoration productCardDecoration() {
       return BoxDecoration(
@@ -28,6 +31,7 @@ class ProductCard extends StatelessWidget {
       padding: const EdgeInsets.only(top: 20, right: 20, left: 20, bottom: 20),
       child: InkWell(
         onTap: () {
+          productService.productSelected = product.copyWith();
           Navigator.of(context).pushNamed('product_detail', arguments: product);
         },
         child: Container(
