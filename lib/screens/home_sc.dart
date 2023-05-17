@@ -16,7 +16,7 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: const CupertinoNavigationBar(
           middle: Text(
-        'Productos',
+        'Productoss',
         style: TextStyle(color: Colors.white),
       )),
       body: ListView.builder(

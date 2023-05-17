@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:products_login/config/index.dart';
 import 'package:products_login/providers/product_form_provider.dart';
 import 'package:provider/provider.dart';
@@ -30,6 +31,9 @@ class ProductForm extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             TextFormField(
+              inputFormatters: [
+                FilteringTextInputFormatter.allow(RegExp(r'^(\d+)?\.?\d{0,2}'))
+              ],
               initialValue: product.price.toString(),
               onChanged: (val) {
                 double.tryParse(val) != null
@@ -51,7 +55,7 @@ class ProductForm extends StatelessWidget {
             const SizedBox(height: 20),
             SwitchListTile.adaptive(
               onChanged: (bool value) {
-                product.available = value;
+                productProvider.updateProductAvailability(value);
               },
               value: product.available,
               title: const Text('Disponible'),

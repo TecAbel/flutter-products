@@ -12,17 +12,26 @@ class TopImageProductDetail extends StatelessWidget {
         fit: StackFit.expand,
         children: [
           ClipRRect(
-            borderRadius: BorderRadius.circular(25),
-            child: imageUrl == null
-                ? Image(
+            borderRadius: BorderRadius.circular(45),
+            child: imageUrl == null || imageUrl == ''
+                ? const Image(
                     fit: BoxFit.cover,
                     image: AssetImage('assets/no-image.png'),
                   )
                 : FadeInImage(
                     fit: BoxFit.cover,
                     image: NetworkImage(imageUrl!),
-                    placeholder: AssetImage('assets/jar-loading.gif'),
+                    placeholder: const AssetImage('assets/jar-loading.gif'),
                   ),
+          ),
+          Opacity(
+            opacity: 0.6,
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.black38,
+                borderRadius: BorderRadius.circular(45),
+              ),
+            ),
           ),
           Positioned(
             top: 10,

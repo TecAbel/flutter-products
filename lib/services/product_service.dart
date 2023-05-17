@@ -1,11 +1,11 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:products_login/models/index.dart';
 import 'package:http/http.dart' as http;
+import 'package:products_login/models/index.dart';
 
 class ProductService extends ChangeNotifier {
-  final String _baseUrl = 'products-fc281-default-rtdb.firebaseio.com';
+  final String _baseUrl = 'users-service-10a0b-default-rtdb.firebaseio.com';
   List<Product> products = [];
   bool isLoading = false;
 
@@ -18,6 +18,7 @@ class ProductService extends ChangeNotifier {
     notifyListeners();
     final url = Uri.https(_baseUrl, 'products.json');
     final resp = await http.get(url);
+    print('response => ${jsonEncode(resp.body)}');
     final Map<String, dynamic> productsMap = json.decode(resp.body);
     productsMap.forEach((key, value) {
       final productTmp = Product.fromJson(value);

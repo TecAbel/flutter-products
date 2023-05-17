@@ -24,6 +24,7 @@ class ProductScreen extends StatelessWidget {
         padding: const EdgeInsets.all(10.0),
         child: SafeArea(
           child: SingleChildScrollView(
+            keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
             child: Container(
               decoration: _buildBoxDecoration(),
               width: double.infinity,
@@ -33,7 +34,7 @@ class ProductScreen extends StatelessWidget {
                   TopImageProductDetail(
                     imageUrl: product.image,
                   ),
-                  const ProductForm()
+                  const Opacity(opacity: 0.9, child: ProductForm())
                 ],
               ),
             ),
