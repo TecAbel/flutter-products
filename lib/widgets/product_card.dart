@@ -125,7 +125,7 @@ class _ProductDetails extends StatelessWidget {
                     color: Colors.white),
               ),
               Text(
-                product.name,
+                product.id!,
                 style: const TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.w300,

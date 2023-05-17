@@ -22,7 +22,7 @@ class HomeScreen extends StatelessWidget {
         style: TextStyle(color: Colors.white),
       )),
       body: products.isEmpty
-          ? Center(
+          ? const Center(
               child: Text(
               'No hay productos para mostrar',
               style: TextStyle(color: CustomTheme.primaryColor, fontSize: 18),
