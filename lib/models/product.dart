@@ -14,6 +14,7 @@ class Product {
   Product({
     required this.available,
     this.image,
+    this.id,
     required this.name,
     required this.price,
   });
@@ -23,12 +24,14 @@ class Product {
     String? image,
     String? name,
     double? price,
+    String? id,
   }) =>
       Product(
         available: available ?? this.available,
         image: image ?? this.image,
         name: name ?? this.name,
         price: price ?? this.price,
+        id: id ?? this.id,
       );
 
   factory Product.fromRawJson(String str) => Product.fromJson(json.decode(str));

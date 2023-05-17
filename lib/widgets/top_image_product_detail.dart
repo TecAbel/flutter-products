@@ -19,7 +19,7 @@ class TopImageProductDetail extends StatelessWidget {
         children: [
           ClipRRect(
               borderRadius: BorderRadius.circular(45),
-              child: renderImage(productService.productSelected?.image!)),
+              child: renderImage(productService.productSelected?.image)),
           Opacity(
             opacity: 0.4,
             child: Container(

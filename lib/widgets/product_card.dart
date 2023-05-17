@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:products_login/config/index.dart';
 import 'package:products_login/models/product.dart';
@@ -12,6 +14,7 @@ class ProductCard extends StatelessWidget {
   Widget build(BuildContext context) {
     double borderRadius = 25;
     final productService = Provider.of<ProductService>(context);
+    print('const => ${json.encode(product)}');
 
     BoxDecoration productCardDecoration() {
       return BoxDecoration(

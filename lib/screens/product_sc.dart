@@ -12,7 +12,9 @@ class ProductScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final product = ModalRoute.of(context)!.settings.arguments as Product;
+    // final product = ModalRoute.of(context)!.settings.arguments as Product;
+    final productService = Provider.of<ProductService>(context);
+    final product = productService.productSelected!;
     return ChangeNotifierProvider(
       create: (BuildContext context) => ProductFormProvider(product),
       // child: _productScreenBody(context, product),
