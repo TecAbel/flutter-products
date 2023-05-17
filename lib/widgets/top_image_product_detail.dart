@@ -55,7 +55,6 @@ class TopImageProductDetail extends StatelessWidget {
                 final picker = ImagePicker();
                 final XFile? photo =
                     await picker.pickImage(source: ImageSource.gallery);
-                print('tenemos file => ${photo?.path}');
                 if (photo == null) return;
                 productService.updateProductImage(photo.path);
               },

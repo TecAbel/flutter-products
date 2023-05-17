@@ -5,9 +5,7 @@ class ProductFormProvider extends ChangeNotifier {
   GlobalKey<FormState> key = GlobalKey<FormState>();
 
   Product product;
-  ProductFormProvider(this.product) {
-    print('${product.id}');
-  }
+  ProductFormProvider(this.product);
 
   void updateProductAvailability(bool value) {
     product.available = value;
