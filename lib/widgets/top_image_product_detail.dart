@@ -54,7 +54,7 @@ class TopImageProductDetail extends StatelessWidget {
                 //camera button click
                 final picker = ImagePicker();
                 final XFile? photo =
-                    await picker.pickImage(source: ImageSource.gallery);
+                    await picker.pickImage(source: ImageSource.camera);
                 if (photo == null) return;
                 productService.updateProductImage(photo.path);
               },

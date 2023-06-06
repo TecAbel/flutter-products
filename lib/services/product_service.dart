@@ -104,8 +104,6 @@ class ProductService extends ChangeNotifier {
     }
 
     final bodyResp = cloudinaryResponseFromJson(resp.body);
-    isSaving = false;
-    notifyListeners();
     return bodyResp.secureUrl;
   }
 

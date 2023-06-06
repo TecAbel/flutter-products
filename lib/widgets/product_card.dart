@@ -81,6 +81,7 @@ class _BackgroudImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: double.infinity,
+      width: double.infinity,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(borderRadius),
         child: imageUrl == null || imageUrl == ''

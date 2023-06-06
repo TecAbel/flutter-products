@@ -48,14 +48,17 @@ class ProductScreen extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: productService.isSaving
+        onPressed: productService.isSaving == true
             ? null
             : () {
+                print('pressed');
                 final isValid = productForm.validate();
                 if (!isValid) return;
                 productService.saveOrCreateProduct(productForm.product);
               },
-        child: const Icon(Icons.save),
+        child: productService.isSaving == true
+            ? const CircularProgressIndicator()
+            : const Icon(Icons.save),
       ),
     );
   }
