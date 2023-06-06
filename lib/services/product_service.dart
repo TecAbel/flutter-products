@@ -72,6 +72,10 @@ class ProductService extends ChangeNotifier {
 
   Future<String?> createProduct(Product product) async {
     final url = Uri.https(_baseUrl, 'products.json');
+    var imgResp = await uploadToCloud();
+    if (imgResp != null) {
+      product.image = imgResp;
+    }
     final resp = await http.post(url, body: product.toRawJson());
     if (resp.statusCode != 200) {
       return null;

@@ -51,7 +51,6 @@ class ProductScreen extends StatelessWidget {
         onPressed: productService.isSaving == true
             ? null
             : () {
-                print('pressed');
                 final isValid = productForm.validate();
                 if (!isValid) return;
                 productService.saveOrCreateProduct(productForm.product);
